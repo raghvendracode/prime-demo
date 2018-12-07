@@ -1,0 +1,214 @@
+<p-galleria [images]="images" panelWidth="1300px" panelHeight="313" [showCaption]="true"></p-galleria>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h3>Example 1</h3>
+      <input type="text" #name (keyup)="changeUpperCase(name.value)">
+      <p>UpperCase - <h2>'{{value | uppercase}}'</h2>
+    </div>
+    <div class="col-md-4">
+      <h3>Example 1</h3>
+      Enter a value <input type="text" [(ngModel)]="fname">
+      <p>{{initial}}</p>
+      <button type="button" (click)='createnow()'>Click me</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        <ngb-alert [dismissible]="false">
+          <strong>Warning!</strong> Better check yourself, you're not looking too good.
+        </ngb-alert>
+      </p>
+      
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <p>
+        Static self-closing alert that disappears after 20 seconds (refresh the page if it has already disappeared)
+      </p>
+      <ngb-alert *ngIf="!staticAlertClosed" (close)="staticAlertClosed = true">Check out our awesome new features!</ngb-alert>
+      
+      <hr/>
+      
+      <p>
+        Show a self-closing success message that disappears after 5 seconds.
+      </p>
+      <ngb-alert *ngIf="successMessage" type="success" (close)="successMessage = null">{{ successMessage }}</ngb-alert>
+      <p>
+        <button class="btn btn-primary" (click)="changeSuccessMessage()">Change message</button>
+      </p>
+      
+    </div>
+  </div>
+  <div>
+    <div class="btn-group btn-group-toggle">
+      <label class="btn-primary" ngbButtonLabel>
+        <input type="checkbox" ngbButton [(ngModel)]="model.left"> Left (pre-checked)
+      </label>
+      <label class="btn-primary" ngbButtonLabel>
+        <input type="checkbox" ngbButton [(ngModel)]="model.middle"> Middle
+      </label>
+      <label class="btn-primary" ngbButtonLabel>
+        <input type="checkbox" ngbButton [(ngModel)]="model.right"> Right
+      </label>
+    </div>
+    <hr>
+    <pre>{{model | json}}</pre>
+
+  </div>
+
+
+
+
+
+  
+
+
+  <div class="row">
+    <div class="col-md-12">
+      <h4>User List -</h4>
+      <table class="table jumbotron">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Email</th>
+
+        </tr>
+        <tr *ngFor="let user of userList">
+          <td>{{user.id}}</td>
+          <td>{{user.name}}</td>
+          <td>{{user.age}}</td>
+          <td>{{user.email}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <h3>Accordian - 1</h3>
+  <p-accordion>
+    <p-accordionTab header="Salads">
+      Salads...
+    </p-accordionTab>
+    <p-accordionTab header="My Custom">
+      My Custom tab is here..loreum ipsum dollar smit..ic,loreum ipsum dollar smit..ic,
+    </p-accordionTab>
+    <p-accordionTab header="Pasta">
+      Pasta...
+    </p-accordionTab>
+    <p-accordionTab header="Pizza" [selected]="true">
+      <p-radioButton label="Double cheese 🧀🧀"
+                     name="pizza"
+                     value="double-cheese"
+                     [(ngModel)]="pizzaSelection">
+      </p-radioButton><br>
+
+      <p-radioButton label="Anchovy"
+                     name="pizza"
+                     value="anchovy"
+                     [(ngModel)]="pizzaSelection">
+      </p-radioButton><br>
+
+      <p-radioButton label="Meat lover's 🍖"
+                     name="pizza"
+                     value="meat-lover"
+                     [(ngModel)]="pizzaSelection">
+      </p-radioButton>
+    </p-accordionTab>
+  </p-accordion>
+
+  <br>
+
+  <p-panel header="Extras" *ngIf="pizzaSelection && pizzaSelection.length">
+    🍕 Would you like extra cheese on your pizza?
+    <button pButton type="button" label="Ok, yeah!"></button>
+  </p-panel>
+  <h3>Accordian -2 </h3>
+  <p-accordion [multiple]="true">
+    <p-accordionTab header="Header 1">
+      Content 1
+    </p-accordionTab>
+    <p-accordionTab header="Header 2">
+      Content 2
+    </p-accordionTab>
+    <p-accordionTab header="Header 3">
+      Content 3
+    </p-accordionTab>
+  </p-accordion>
+  <h3>Accordian -3 </h3>
+  <p-accordion [multiple]="true">
+    <p-accordionTab header="Header 1">
+      Content 1
+    </p-accordionTab>
+    <p-accordionTab header="Header 2">
+      Content 2
+    </p-accordionTab>
+    <p-accordionTab header="Header 3">
+      Content 3
+    </p-accordionTab>
+  </p-accordion>
+  <h3>Disabled accordian</h3>
+  <p-accordion>
+    <p-accordionTab header="Header 1" [disabled]="true">
+      Content 1
+    </p-accordionTab>
+    <p-accordionTab header="Header 2">
+      Content 2
+    </p-accordionTab>
+    <p-accordionTab header="Header 3">
+      Content 3
+    </p-accordionTab>
+  </p-accordion>
+  <h3>Animation</h3>
+
+  <p-accordion [activeIndex]="index">
+    <p-accordionTab [transitionOptions]="'0ms'" header="Header 1">
+      <p-radioButton label="Custom Double cheese 🧀🧀"
+                     name="pizza"
+                     value="double-cheese"
+                     [(ngModel)]="pizzaSelection1">
+      </p-radioButton><br>
+
+      <p-radioButton label="Custom Anchovy"
+                     name="pizza"
+                     value="anchovy"
+                     [(ngModel)]="pizzaSelection1">
+      </p-radioButton><br>
+
+    </p-accordionTab>
+  </p-accordion>
+  <p></p>
+  <p-panel header="Extras" *ngIf="pizzaSelection1 && pizzaSelection1.length">
+    🍕 Would you like extra cheese on your pizza?
+    <button pButton type="button" label="Ok, yeah!"></button>
+  </p-panel>
+<p></p>
+  <div class="row">
+    <div class="col-md-12">
+      <p>cards examples</p>
+      <p-card header="Simple Card" [style]="{width: '360px'}">
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
+        </div>
+      </p-card>
+
+      <br>
+      <br>
+
+      <p-card header="Advanced Card" subheader="Subheader" [style]="{width: '360px'}" styleClass="ui-card-shadow">
+        <p-header>
+          <img src="Card" src="https://www.primefaces.org/primeng/assets/showcase/images/usercard.png">
+        </p-header>
+        <div>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt
+          quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque quas!
+        </div>
+        <p-footer>
+          <button pButton type="button" label="Save" icon="pi pi-check" style="margin-right: .25em"></button>
+          <button pButton type="button" label="Cancel" icon="pi pi-times" class="ui-button-secondary"></button>
+        </p-footer>
+      </p-card>
+    </div>
+  </div>
